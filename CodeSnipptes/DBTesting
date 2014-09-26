@@ -1,0 +1,116 @@
+		//Variabel
+		T_UserHelper helper = new T_UserHelper();
+		T_LoginHelper loginHelper = new T_LoginHelper();
+		T_UserdataHelper userdataHelper = new T_UserdataHelper();
+		T_TracksHelper tracksHelper = new T_TracksHelper();
+		
+		T_UserConstante uC = new T_UserConstante();
+		OperatorConstante oC = new OperatorConstante();
+		//Teste Datenbank verbindung Funktioniert
+		
+		if (BaseDatabaseHelper.isConnected()) {
+			Write("Datenbank connction is OK!");
+		}else
+		{
+			Write("Datenbank connection is not OK!");
+		}
+		
+		
+		//Alle User bekommen Funktioniert
+		ArrayList<T_User> users = helper.GetAllUser();
+		
+		for (T_User t_User : users) {
+			//Write(t_User.getUsername());
+		}
+		
+		//Where abfrage testen Funktioniert
+		
+		ArrayList<T_User> whereUser = helper.Where(
+				uC.getUsername() + 
+				" " + 
+				oC.getIsEqual() +
+				"'" +
+				"Jonas" + 
+				"'"
+				);
+		
+		for (T_User t_User : whereUser) {
+			//Versuche Die daten zu ändern
+//			t_User.setEmail(UUID.randomUUID().toString());
+//			if(!t_User.SaveChanges())
+//			{
+//				Write("ERROR");
+//			}else
+//			{
+//				Write("Success!");
+//			}
+			
+			
+			//Write(t_User.getUsername());
+		}
+		
+		
+		//Login Test
+		
+		//Login erstellen Funktionier!
+		@SuppressWarnings("deprecation")
+		T_Login testLogin = new T_Login(whereUser.get(0).getID(), new Date(2014, 9, 17));
+		
+		if (loginHelper.WriteLogin(testLogin)) {
+			Write("Login wurde geschrieben");
+		}
+		
+		//Alle Logins auslesen Funktioniert
+		
+		ArrayList<T_Login> allLogins = loginHelper.GetAllLogin();
+		
+		for (T_Login t_Login : allLogins) {
+			Write(t_Login.getUUID());
+		}
+		
+		//Löschen der Logins Funktioniert
+		
+		if (allLogins.get(0).Delete()) {
+			Write("Löschen hat geklappt");
+		}else
+		{
+			Write("Error");
+		}
+		
+		//Userdata erstellen Funktioniert
+		
+		T_Userdata newUserdata = new T_Userdata(whereUser.get(0).getID(), 152.152, 4512.255);
+		
+		userdataHelper.WriteUserdata(newUserdata);
+		
+		java.util.Date dt = new java.util.Date();
+
+		java.text.SimpleDateFormat sdf = 
+		     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String currentTime = sdf.format(dt);
+		
+		//Tracks Funktioniert
+//		T_Tracks newTrack1 = new T_Tracks(55.554, 878.545, whereUser.get(0).getID(), currentTime);
+//		
+//		tracksHelper.WriteTrack(newTrack1);
+//		
+//		T_Tracks newTrack2 = new T_Tracks(55.554, 878.545, currentTime);
+//		
+//		tracksHelper.WriteTrack(newTrack2);
+		
+		//Hole alle Tracks
+		
+		ArrayList<T_Tracks> tracks = tracksHelper.GetAllTracks();
+		
+		for (T_Tracks t_Tracks : tracks) {
+			Write(t_Tracks.getTime());
+		}
+		
+		
+		try {
+			Thread.sleep((10*1000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}

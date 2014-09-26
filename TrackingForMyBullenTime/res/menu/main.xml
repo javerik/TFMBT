@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="de.juanah.trackingformybullentime.MainActivity" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/menu_about"
+        app:showAsAction="never"/>
+    <item android:id="@+id/m_register" android:visible="true" android:title="@string/m_register" android:orderInCategory="101"></item>
+    <item android:id="@+id/m_userdata" android:orderInCategory="102" android:title="@string/menu_userdata" android:visible="true"></item>
+    <item android:id="@+id/m_login" android:title="@string/m_login" android:orderInCategory="103"></item>
+	
+</menu>

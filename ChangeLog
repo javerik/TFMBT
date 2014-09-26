@@ -1,0 +1,12 @@
+Changelog TFMBT
+
+////////////////////22.09.2014
+#####0.2.1#######
+Server:
+-übertragung der Tracks mit Zeit, Datum und Nutzername falls vorhanden
+-jeder Track muss mit einer UUID gesendet werden
+-Server Log, der Server soll einen Log bekommen, der Errors loged
+Client:
+-Text im Track muss das Datum sein und falls vorhanden der Name des Trackers
+-Registrierung und Login muss klappen
+	
